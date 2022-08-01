@@ -309,10 +309,14 @@
 </template>
 
 <script>
-import axios from 'axios'
-
+//import axios from 'axios'
+import(fromAxios).then(data => {axios});
 export default {
   props: {
+    fromAxios:{
+      type: String,
+      default: 'axios'
+    },
     fields: {
       type: Array,
       required: true
