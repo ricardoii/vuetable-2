@@ -310,7 +310,7 @@
 
 <script>
 //import axios from 'axios'
-import(fromAxios).then(data => {axios});
+
 export default {
   props: {
     fromAxios:{
@@ -494,6 +494,9 @@ export default {
       scrollBarWidth: '17px', //chrome default
       scrollVisible: false,
     }
+  },
+  created(){
+    import(this.fromAxios).then(data => {axios});
   },
   mounted () {
     this.normalizeFields()
