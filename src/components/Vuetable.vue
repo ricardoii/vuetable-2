@@ -312,11 +312,7 @@
 import axios from 'axios'
 
 export default {
-  props: {
-    fromAxios:{
-      type: String,
-      default: 'axios'
-    },
+  props: {    
     fields: {
       type: Array,
       required: true
@@ -494,10 +490,7 @@ export default {
       scrollBarWidth: '17px', //chrome default
       scrollVisible: false,
     }
-  },
-  created(){
-    import(this.fromAxios).then(data => {axios});
-  },
+  },  
   mounted () {
     this.normalizeFields()
     this.normalizeSortOrder()
