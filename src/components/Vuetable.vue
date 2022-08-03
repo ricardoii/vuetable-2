@@ -310,9 +310,13 @@
 
 <script>
 import axios from 'axios'
-
+//import {API} from "@/plugins/api"
 export default {
   props: {
+    fromAxios: {
+      type: Boolean,
+      default: false
+    },
     fields: {
       type: Array,
       required: true
@@ -727,9 +731,14 @@ export default {
       ).catch(() => failed())
     },
     fetch (apiUrl, httpOptions) {
-      return this.httpFetch
-          ? this.httpFetch(apiUrl, httpOptions)
-          : axios[this.httpMethod](apiUrl, httpOptions)
+      if(this.httpFetch)
+        return this.httpFetch(apiUrl, httpOptions)
+      else{
+        if(this.fromAxios == false)
+          return axios[this.httpMethod](apiUrl, httpOptions)
+        else
+          return API[this.httpMethod](apiUrl, httpOptions)
+      }
     },
     loadSuccess (response) {
       this.fireEvent('load-success', response)
